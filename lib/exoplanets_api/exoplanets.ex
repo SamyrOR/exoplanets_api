@@ -4,12 +4,21 @@ defmodule ExoplanetsApi.Exoplanets do
   def init do
     File.stream!("priv/static/PS_2024.12.05_17.14.02.csv")
     |> CSV.parse_stream()
-    |> Stream.filter(fn
-      [_, "11 Com b" | _] -> true
-      [_] -> false
-      [_ | _] -> false
-    end)
     |> Enum.to_list()
     |> IO.inspect()
+  end
+
+  def filter_with_args(stream, [head | tail]) do
+    stream =
+      stream
+      |> Stream.filter(fn item ->
+        Enum.member?(item, head)
+      end)
+
+    filter_with_args(stream, tail)
+  end
+
+  def filter_with_args(stream, []) do
+    stream
   end
 end
