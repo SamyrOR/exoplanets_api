@@ -7,6 +7,10 @@ defmodule ExoplanetsApiWeb.Router do
 
   scope "/api", ExoplanetsApiWeb do
     pipe_through :api
+
+    scope "/exoplanets" do
+      get "/", ExoplanetsController, :get
+    end
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
