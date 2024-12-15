@@ -1,7 +1,7 @@
 defmodule ExoplanetsApi.Exoplanets do
   alias NimbleCSV.RFC4180, as: CSV
 
-  @fileStream File.stream!("priv/static/PS_2024.12.05_17.14.02.csv")
+  @fileStream File.stream!("priv/static/PS_2024.12.15_08.26.04.csv")
 
   def filter_with_args(args) do
     stream =
