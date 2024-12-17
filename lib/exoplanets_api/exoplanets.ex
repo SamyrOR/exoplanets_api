@@ -3,6 +3,14 @@ defmodule ExoplanetsApi.Exoplanets do
 
   @fileStream File.stream!("priv/static/PS_2024.12.15_08.26.04.csv")
 
+  def random_planets() do
+    @fileStream
+    |> CSV.parse_stream()
+    |> Enum.take_random(10)
+    |> Enum.to_list()
+    |> Jason.encode()
+  end
+
   def filter_with_args(args) do
     stream =
       @fileStream

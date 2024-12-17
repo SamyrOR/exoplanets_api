@@ -10,6 +10,7 @@ defmodule ExoplanetsApiWeb.Router do
 
     scope "/exoplanets" do
       get "/", ExoplanetsController, :get
+      get "/random", ExoplanetsController, :random
     end
   end
 
