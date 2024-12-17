@@ -21,7 +21,9 @@ defmodule ExoplanetsApi.Exoplanets do
     stream =
       stream
       |> Stream.filter(fn item ->
-        Enum.member?(item, head)
+        Enum.any?(item, fn column_item ->
+          String.contains?(String.downcase(column_item), String.downcase(head))
+        end)
       end)
 
     filter_with_args(stream, tail)
