@@ -7,6 +7,10 @@ defmodule ExoplanetsApi.Exoplanets do
     @fileStream
     |> CSV.parse_stream()
     |> Enum.take_random(10)
+    |> Stream.map(fn element ->
+      zip_columns(element)
+      |> Map.new(fn key -> key end)
+    end)
     |> Enum.to_list()
     |> Jason.encode()
   end
